@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aro Spring Update #1 | 2025年4月1日</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #f472b6;
+      --accent: #fb7185;
+      --background: #f8fafc;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --white: #ffffff;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--white);
+      padding: 2rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      width: 150px;
+      height: auto;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+    }
+
+    .cherry-blossom {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffb7c5" d="M50 0 C60 30 70 40 100 50 C70 60 60 70 50 100 C40 70 30 60 0 50 C30 40 40 30 50 0Z"/></svg>');
+      background-size: contain;
+      opacity: 0.7;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 2rem 0 1rem;
+      font-weight: 700;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      color: var(--primary-dark);
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 3px;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin: 1.5rem 0 0.75rem;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .date-badge {
+      display: inline-block;
+      background-color: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 700;
+      margin-top: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      background-color: var(--card-bg);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid var(--border);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .timeline {
+      margin: 3rem 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: calc(50% - 1px);
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    }
+
+    .timeline-item {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 30px;
+      position: relative;
+      margin: 2rem 0;
+      width: 50%;
+    }
+
+    .timeline-item:nth-child(odd) {
+      align-self: flex-end;
+      justify-content: flex-start;
+      padding-right: 0;
+      padding-left: 30px;
+      margin-left: 50%;
+    }
+
+    .timeline-content {
+      background-color: var(--card-bg);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      position: relative;
+      border: 1px solid var(--border);
+    }
+
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      top: calc(50% - 10px);
+      right: -40px;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content::before {
+      right: auto;
+      left: -40px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px) scale(1.1);
+      background-color: var(--primary-dark);
+    }
+
+    footer {
+      background-color: var(--text);
+      color: var(--white);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: var(--white);
+      color: var(--primary);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      min-width: 80px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .countdown-number {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .countdown-label {
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .faq {
+      margin: 3rem 0;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1rem;
+      background-color: var(--card-bg);
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question:hover {
+      background-color: rgba(99, 102, 241, 0.05);
+    }
+
+    .faq-answer {
+      padding: 0 1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background-color: var(--card-bg);
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 1rem;
+      max-height: 1000px;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 0;
+        justify-content: flex-start;
+      }
+
+      .timeline-item:nth-child(odd) {
+        margin-left: 0;
+        padding-left: 60px;
+      }
+
+      .timeline-content::before {
+        left: -40px;
+        right: auto;
+      }
+
+      .countdown {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="header-content">
+      <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <rect x="40" y="40" width="120" height="120" rx="20" fill="#ffffff"/>
+        <text x="100" y="110" font-size="60" font-weight="bold" font-family="'M PLUS Rounded 1c', sans-serif" text-anchor="middle" fill="#6366f1">Aro</text>
+        <circle cx="150" cy="70" r="15" fill="#f472b6"/>
+      </svg>
+      <h1>Aro Spring Update #1</h1>
+      <div class="date-badge">2025年4月1日（火）18:00～</div>
+      <p>「あったらいいな」と思えるソフトウェアを形にする<br>Aro Software Groupの新時代が始まります</p>
+      <a href="#register" class="cta-button">参加登録する</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <section id="about">
+      <h2>Aro Spring Update #1 とは</h2>
+      <p>Aro Spring Update #1は、2025年2月に設立されたAro Software Groupによる初の大型アップデートイベントです。新作ソフトウェア「Aro All」の発表や、技術スタックの公開など、盛りだくさんの内容をお届けします。</p>
+      <div class="countdown">
+        <div class="countdown-item">
+          <span class="countdown-number" id="days">--</span>
+          <span class="countdown-label">日</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">--</span>
+          <span class="countdown-label">時間</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="minutes">--</span>
+          <span class="countdown-label">分</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="seconds">--</span>
+          <span class="countdown-label">秒</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="highlights">
+      <h2>見逃せないハイライト</h2>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+          <h3>新作「Aro All」発表</h3>
+          <p>クリエイティブワークとタスク管理を融合させた、次世代オールインワンソリューションの全貌を初公開。あなたの創造性と生産性を最大化する革新的機能をデモンストレーションでご紹介します。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-code"></i></div>
+          <h3>技術スタック大公開</h3>
+          <p>最新技術と開発手法を、分かりやすく解説。私たちの開発哲学とオープンなアプローチをぜひご体験ください。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-gift"></i></div>
+          <h3>サプライズアナウンスメント</h3>
+          <p>イベントのクライマックスには、Aro Software Groupの未来を形作る重大発表を予定。最後まで目が離せません！</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule">
+      <h2>イベントスケジュール</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>オープニング</h3>
+            <p>18:00 - 18:05</p>
+            <p>Aro Software Groupの紹介と本日のアジェンダ説明</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Aro All発表</h3>
+            <p>18:05 - 18:25</p>
+            <p>新作ソフトウェア「Aro All」の詳細紹介とデモンストレーション</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>技術スタック紹介</h3>
+            <p>18:25 - 18:35</p>
+            <p>最新技術と開発手法の解説</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>サプライズ発表</h3>
+            <p>18:35 - 18:45</p>
+            <p>Aro Software Groupの未来に関する重大発表</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Q&A・クロージング</h3>
+            <p>18:45 - 18:50</p>
+            <p>視聴者からの質問回答とイベント締めくくり</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>よくある質問</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-question">
+            イベントはどこで視聴できますか？ <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>イベントはXと特設ページで配信されます。参加登録後に詳細リンクをお送りします。</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            Aro Software Groupは会社ですか？ <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>いいえ、Aro Software Groupは非営利のコミュニティグループとして活動しています。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="register">
+      <h2>参加登録</h2>
+      <p>参加登録後に詳細リンクをお送りします。以下のフォームからご登録ください。</p>
+      <form id="registration-form">
+        <div style="margin-bottom: 1rem;">
+          <input type="email" id="email" placeholder="メールアドレス" required style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); margin-bottom: 1rem;">
+          <button type="submit" class="cta-button" style="width: 100%;">登録する</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="social">
+      <h2>コミュニティに参加しよう</h2>
+      <p>最新情報とアップデートを見逃さないよう、以下のプラットフォームでフォローをお願いします。</p>
+      <div class="social-links">
+        <a href="https://github.com/Aro-Software-Group" target="_blank" class="social-link">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://discord.gg/rJYkhcUU" target="_blank" class="social-link">
+          <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://note.com/aro_software_gro" target="_blank" class="social-link">
+          <i class="fas fa-pen-nib"></i>
+        </a>
+        <a href="https://x.com/home" target="_blank" class="social-link">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Aro Software Group. All rights reserved.</p>
+    <p>「あったらいいな」と思えるソフトウェアを形に。</p>
+  </footer>
+
+  <script>
+    // 桜の花びらのアニメーション
+    for (let i = 0; i < 20; i++) {
+      const blossom = document.createElement('div');
+      blossom.classList.add('cherry-blossom');
+      blossom.style.left = `${Math.random() * 100}%`;
+      blossom.style.animationDuration = `${Math.random() * 10 + 5}s`;
+      blossom.style.animationDelay = `${Math.random() * 5}s`;
+      document.getElementById('header').appendChild(blossom);
+    }
+
+    // カウントダウンタイマー
+    const countDownDate = new Date("Apr 1, 2025 18:00:00").getTime();
+
+    const updateCountdown = function() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      if (distance < 0) {
+        document.getElementById("days").innerHTML = "0";
+        document.getElementById("hours").innerHTML = "0";
+        document.getElementById("minutes").innerHTML = "0";
+        document.getElementById("seconds").innerHTML = "0";
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+      }
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // FAQ アコーディオン
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentNode;
+        item.classList.toggle('active');
+      });
+    });
+
+    // フォーム送信処理
+    document.getElementById('registration-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      alert(`${email} で登録が完了しました！参加リンクの詳細を後ほどお送りします。`);
+      document.getElementById('email').value = '';
+    });
+  </script>
+</body>
+</html>
